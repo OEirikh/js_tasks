@@ -4,5 +4,8 @@
 // import './js/constructor.js'
 
 // -------------Looping Array Methods (Перебирающие методы массивов)----------------
+
 // import './js/forEach.js'
-import './js/map.js'
+// import './js/map.js'
+// import './js/filter.js'
+import './js/find.js'
