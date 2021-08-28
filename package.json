@@ -1,0 +1,28 @@
+{
+  "name": "js_tasks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OEirikh/js_tasks.git"
+  },
+  "keywords": [],
+  "author": "OEirikh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OEirikh/js_tasks/issues"
+  },
+  "homepage": "https://github.com/OEirikh/js_tasks#readme",
+  "dependencies": {
+    "joi": "^17.4.2"
+  },
+  "devDependencies": {
+    "marked": "^3.0.2",
+    "parcel-bundler": "^1.12.5"
+  }
+}
