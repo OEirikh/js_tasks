@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/OEirikh/js_tasks#readme",
   "dependencies": {
+    "bootstrap.native": "^4.0.6",
     "joi": "^17.4.2"
   },
   "devDependencies": {
