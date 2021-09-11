@@ -2,34 +2,41 @@
  * Метод window.setTimeout(callback, delay, args)
  */
 
-console.log('До вызова setTimeout');
+// console.log('До вызова setTimeout');
 
-const logMasage = () => {
-  console.log('визов callback функции через 3 секунди');
-}
+// setTimeout((x) => {
+//   console.log(x);
+//   console.log('внутри callback для setTimeout_1');
+// },
+// 3000, 5)
 
-setTimeout(() => {
-  console.log('внутри callback для setTimeout');
-},
-2000,)
+// setTimeout((x, y) => {
+//   console.log(x, y);
+//   console.log('внутри callback для setTimeout_2');
+// },
+// 2000,10, 20)
 
-console.log('После вызова setTimeout');
+// console.log('После вызова setTimeout');
 
 /*
  * Очистка таймаута с clearTimeout(timeoutId)
  */
 
-// const logger = time => {
-//   console.log(`Лог через ${time}ms, потому что не отменили таймаут`);
-// };
+const logger = time => {
+  console.log(`Лог через ${time}ms, потому что не отменили таймаут`);
+};
 
-// const timerId = setTimeout(logger, 2000, 2000);
 
-// console.log(timerId);
+// const 'timerId' - Присваивается при создании setTimeout -
+//   (уникальное число с шагом в 1) для отмени таймера
 
-// const shouldCancelTimer = Math.random() > 0.3;
-// console.log(shouldCancelTimer);
+const timerId = setTimeout(logger, 2000, 2000);
 
-// if (shouldCancelTimer) {
-//   clearTimeout(timerId);
-// }
+console.log(timerId);
+
+const shouldCancelTimer = Math.random() > 0.3;
+console.log(shouldCancelTimer);
+
+if (shouldCancelTimer) {
+  clearTimeout(timerId);
+}

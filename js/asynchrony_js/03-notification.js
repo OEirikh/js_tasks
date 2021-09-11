@@ -1,6 +1,4 @@
-// import '../css/common.css';
-
-/**
+/*
  * - Показываем и скрываем добавляя/удаляя класс is-visible
  * - Скрываем через определённое время
  * - Скрываем при клике
@@ -20,6 +18,7 @@ showNotification();
 /*
  * Функции
  */
+
 function onNotificationClick() {
   hideNotification();
   clearTimeout(timeoutId);
