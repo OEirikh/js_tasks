@@ -12,7 +12,7 @@ let hasSubscribed = false;
 const modal = new BSN.Modal('#subscription-modal');
 
 openModal();
-
+// 'hide.bs.modal'- собитие с bootstrap.native
 refs.modal.addEventListener('hide.bs.modal', openModal);
 refs.subscribeBtn.addEventListener('click', onSubscribeBtnClick);
 

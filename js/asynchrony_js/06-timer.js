@@ -1,5 +1,3 @@
-// import '../css/common.css';
-
 const refs = {
   startBtn: document.querySelector('button[data-action-start]'),
   stopBtn: document.querySelector('button[data-action-stop]'),
@@ -24,15 +22,14 @@ class Timer {
     if (this.isActive) {
       return;
     }
-
     const startTime = Date.now();
+
     this.isActive = true;
 
     this.intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = currentTime - startTime;
       const time = this.getTimeComponents(deltaTime);
-
       this.onTick(time);
     }, 1000);
   }
@@ -50,19 +47,23 @@ class Timer {
    * - Возвращает обьект со свойствами hours, mins, secs
    * - Адская копипаста со стека 💩
    */
+
   getTimeComponents(time) {
     const hours = this.pad(
       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-
     return { hours, mins, secs };
   }
 
   /*
    * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
+   * Метод padStart() заполняет текущую строку другой строкой (несколько раз, если нужно) так,
+   * что итоговая строка достигает заданной длины.
+   * Заполнение осуществляется в начале (слева) текущей строки
    */
+
   pad(value) {
     return String(value).padStart(2, '0');
   }
@@ -73,13 +74,10 @@ const timer = new Timer({
 });
 
 refs.startBtn.addEventListener('click', timer.start.bind(timer));
+
 refs.stopBtn.addEventListener('click', timer.stop.bind(timer));
 
-/*
- * - Принимает время в миллисекундах
- * - Высчитывает сколько в них вмещается часов/минут/секунд
- * - Рисует интерфейс
- */
+//  * - Рисует интерфейс
 function updateClockface({ hours, mins, secs }) {
   refs.clockface.textContent = `${hours}:${mins}:${secs}`;
 }
