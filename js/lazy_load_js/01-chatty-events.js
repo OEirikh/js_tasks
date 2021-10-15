@@ -8,14 +8,15 @@
 /*
  * Mousemove и throttle (для скрола, resize изменения размера окна)
  */
-const coordsOutputRef = document.querySelector(".js-coords");
+
+const coordsOutputRef = document.querySelector('.js-coords');
 let mouseMoveCbInvocationCounter = 0;
 
 // _.throttle(func, [(wait = 0)], [(options = {})]);
 // содержит новую функцию которая будет визиватся на чаще чем (---мс)
 const throttledOnMouseMove = _.throttle(onMouseMove, 500);
 
-window.addEventListener("mousemove", throttledOnMouseMove);
+window.addEventListener('mousemove', throttledOnMouseMove);
 
 function onMouseMove(event) {
   mouseMoveCbInvocationCounter += 1;
@@ -35,11 +36,11 @@ function onMouseMove(event) {
 
 // _.debounce(func, [(wait = 0)], [(options = {})]);
 
-const inputRef = document.querySelector(".js-input");
-const outputRef = document.querySelector(".js-output");
+const inputRef = document.querySelector('.js-input');
+const outputRef = document.querySelector('.js-output');
 let inputCbInvocationCounter = 0;
 
-inputRef.addEventListener("input", _.debounse(onInputChange, 250));
+inputRef.addEventListener('input', _.debounse(onInputChange, 250));
 
 function onInputChange(event) {
   inputCbInvocationCounter += 1;

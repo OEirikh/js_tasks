@@ -1,47 +1,25 @@
-/*
- * Промисификация:
- * - Поблема доступа к результату промиса с колбеком
- * - Функция которая возвращает промис
- */
-
-const makeOrder = dish => {
-  const DELAY = 1000;
-  return new Promise((resolve, reject) => {
-    const passed = Math.random() > 0.5;
-
-    setTimeout(() => {
-      if (passed) {
-        resolve(`✅ Вот ваш заказ: ${dish}`);
-      }
-
-      reject('❌ Упс, у нас закончились продукты');
-    }, DELAY);
-  });
-};
-
-makeOrder('пирожок').then(onMakeOrderSuccess).catch(onMakeOrderError);
-
-function onMakeOrderSuccess(result) {
-  console.log('onMakeOrderSuccess');
-  console.log(result);
-}
-
-function onMakeOrderError(error) {
-  console.log('onMakeOrderError');
-  console.log(error);
-}
-
-/*
- * Промисификация «синхронных» функций
- * - Promise.resolve()
- * - Promise.reject()
- */
+// /*
+//  * Промисификация:
+//  * - Поблема доступа к результату промиса с колбеком
+//  * - Функция которая возвращает промис
+//  */
 
 // const makeOrder = dish => {
-//   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`);
+//   const DELAY = 1000;
+//   return new Promise((resolve, reject) => {
+//     const passed = Math.random() > 0.5;
+
+//     setTimeout(() => {
+//       if (passed) {
+//         resolve(`✅ Вот ваш заказ: ${dish}`);
+//       }
+
+//       reject('❌ Упс, у нас закончились продукты');
+//     }, DELAY);
+//   });
 // };
 
-// makeOrder('пирожок').then(onMakeOrderSuccess);
+// makeOrder('пирожок').then(onMakeOrderSuccess).catch(onMakeOrderError);
 
 // function onMakeOrderSuccess(result) {
 //   console.log('onMakeOrderSuccess');
@@ -53,75 +31,117 @@ function onMakeOrderError(error) {
 //   console.log(error);
 // }
 
-/*
- * Покемоны с https://pokeapi.co/
- */
+// /*
+//  * Промисификация «синхронных» функций
+//  * - Promise.resolve()
+//  * - Promise.reject()
+//  */
 
-// const fetchPokemonById = id => {
-//   return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json());
-// };
+// // const makeOrder = dish => {
+// //   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`);
+// // };
 
-// fetchPokemonById(1).then(onFetchSuccess).catch(onFetchError);
+// // makeOrder('пирожок').then(onMakeOrderSuccess);
 
-// fetchPokemonById(2).then(onFetchSuccess).catch(onFetchError);
+// // function onMakeOrderSuccess(result) {
+// //   console.log('onMakeOrderSuccess');
+// //   console.log(result);
+// // }
 
-// fetchPokemonById(3).then(onFetchSuccess).catch(onFetchError);
+// // function onMakeOrderError(error) {
+// //   console.log('onMakeOrderError');
+// //   console.log(error);
+// // }
 
-// function onFetchSuccess(pokemon) {
-//   console.log('onFetchSuccess -> onFetchSuccess');
-//   console.log(pokemon);
-// }
+// /*
+//  * Покемоны с https://pokeapi.co/
+//  */
 
-// function onFetchError(error) {
-//   console.log('onFetchError -> onFetchError');
-//   console.log('Это в блоке catch');
-//   console.log(error);
-// }
+// // const fetchPokemonById = id => {
+// //   return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json());
+// // };
 
-// makePromise
-// const makePromise = () => {
-//   return new Promise((resolve, reject) => {
-//     const passed = Math.random() > 0.5;
+// // fetchPokemonById(1).then(onFetchSuccess).catch(onFetchError);
 
-//     setTimeout(() => {
-//       if (passed) {
-//         resolve('✅ Куку это resolve');
-//       }
+// // fetchPokemonById(2).then(onFetchSuccess).catch(onFetchError);
 
-//       reject('❌ все пропало это reject');
-//     }, 2000);
-//   });
-// };
+// // fetchPokemonById(3).then(onFetchSuccess).catch(onFetchError);
 
-// makePromise()
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error));
+// // function onFetchSuccess(pokemon) {
+// //   console.log('onFetchSuccess -> onFetchSuccess');
+// //   console.log(pokemon);
+// // }
 
-const users = [
-  { name: 'Mango', active: true },
-  { name: 'Poly', active: false },
-  { name: 'Ajax', active: true },
-  { name: 'Lux', active: false },
-];
+// // function onFetchError(error) {
+// //   console.log('onFetchError -> onFetchError');
+// //   console.log('Это в блоке catch');
+// //   console.log(error);
+// // }
 
-const toggleUserState = (allUsers, userName, callback) => {
-  return Promise.resolve(
-    allUsers.map(user =>
-      user.name === userName ? { ...user, active: !user.active } : user,
-    ),
-  );
+// // makePromise
+// // const makePromise = () => {
+// //   return new Promise((resolve, reject) => {
+// //     const passed = Math.random() > 0.5;
+
+// //     setTimeout(() => {
+// //       if (passed) {
+// //         resolve('✅ Куку это resolve');
+// //       }
+
+// //       reject('❌ все пропало это reject');
+// //     }, 2000);
+// //   });
+// // };
+
+// // makePromise()
+// //   .then(result => console.log(result))
+// //   .catch(error => console.log(error));
+
+// //////////////////////////////////////////////////////////////
+
+// ////////////////////////////////////////////////////////////////
+
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const logger = updatedUsers => console.table(updatedUsers);
+const makeTransaction = transaction => {
+  return new Promise((resolve, reject) => {
+    const delay = randomIntegerFromInterval(200, 500);
+
+    setTimeout(() => {
+      const canProcess = Math.random() > 0.3;
+
+      if (canProcess) {
+        resolve({ id: transaction.id, time: delay });
+      }
+      reject(transaction.id);
+    }, delay);
+  });
+};
+
+const logSuccess = ({ id, time }) => {
+  console.log(`Transaction ${id} processed in ${time}ms`);
+};
+
+const logError = id => {
+  console.warn(`Error processing transaction ${id}. Please try again later.`);
+};
 
 /*
- * Сейчас работает так
+ * Работает так
  */
-// toggleUserState(users, 'Mango', logger);
-// toggleUserState(users, 'Lux', logger);
-
+// makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
+// makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
+// makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
+// makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
 /*
  * Должно работать так
  */
-toggleUserState(users, 'Mango').then(logger);
-toggleUserState(users, 'Lux').then(logger);
+makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
+
+makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);
+
+makeTransaction({ id: 72, amount: 75 }).then(logSuccess).catch(logError);
+
+makeTransaction({ id: 73, amount: 100 }).then(logSuccess).catch(logError);
