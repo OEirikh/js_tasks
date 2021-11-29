@@ -10,7 +10,7 @@
 // import './js/filter.js'
 // import './js/find.js'
 // import './js/-every-some.js'
-// import './js/reduce.js'
+// import './js/reduce.js';
 // import './js/sort.js'
 
 // -------------Объектная модель документа (DOM)-------------------------------------

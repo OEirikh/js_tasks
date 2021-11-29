@@ -13,7 +13,7 @@
 
 const numbers = [5, 10, 15, 20, 25];
 
-const total = numbers.reduce((acc, number) => acc + number, 0)
+const total = numbers.reduce((acc, number) => acc + number, 0);
 console.log(total);
 
 // acc - акумулятор(передається від ітерації до ітерації) початкове значення задається другим аргументом після колбек функції,
@@ -31,9 +31,7 @@ console.log(total);
 // То есть метод reduce() используется когда необходимо взять «много» и привести к «одному».
 // В повседневных задачах его применение сводится к работе с числами.
 
-
-
-/* 
+/*
  * Считаем общую зарплату
  */
 
@@ -43,10 +41,13 @@ const salary = {
   ajax: 150,
 };
 
-const totalSalary = Object.values(salary).reduce((total, salary) => total + salary, 0)
+const totalSalary = Object.values(salary).reduce(
+  (total, salary) => total + salary,
+  0,
+);
 console.log(totalSalary);
 
-/* 
+/*
  * Считаем общее количество часов
  */
 
@@ -56,16 +57,18 @@ const players = [
   { id: 'player-3', name: 'Kivi', timePlayed: 230, points: 48, online: true },
   { id: 'player-4', name: 'Ajax', timePlayed: 150, points: 71, online: false },
   { id: 'player-5', name: 'Chelsy', timePlayed: 80, points: 48, online: true },
-]
+];
 
-
-const totalTimePlayed = players.reduce((total, player) => total + player.timePlayed, 0)
+const totalTimePlayed = players.reduce(
+  (total, player) => total + player.timePlayed,
+  0,
+);
 
 console.log(totalTimePlayed);
 
-
 // передивитись кінець відео!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+const sum = (...args) =>
+  `Sum is equal ${args.reduce((start, arg) => start + arg, 0)}`;
 
-
-
+console.log(sum(12, 23, 32)); // Sum is equal 67
