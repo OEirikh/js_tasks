@@ -147,7 +147,7 @@ class Hero {
 // ---ребенок---------родитель
 class Warrior extends Hero {
   constructor(name, xp, weapon) {
-    // -обезательний визов конструктора родителя'super(передаются свойств)'
+    // -обезательний визов конструктора родителя'super' - (передаются свойства и методи родителя)
     super(name, xp);
     this.weapon = weapon;
   }
